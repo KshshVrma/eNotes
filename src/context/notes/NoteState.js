@@ -76,13 +76,13 @@ const NoteState = (props) => {
           "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMxZWFjYjllNTU5MjBiMWQ1NWViNTlkIn0sImlhdCI6MTY2Mjk1ODc1OX0.X3WzQQkBBxAsi6LhKJ2hREA_dBm_Bb8GyTbNLIieF0I",
       },
 
-      body: JSON.stringify({ title, description, tag }),
-    });
-
+      body: JSON.stringify({ title, description, tag })
+    });console.log(response);
+// const json=response.json();
     //
     console.log("adding a new note");
     const note = {
-      _id: "631f0e690d2cef04e9276aec",
+      _id: "631f0e690d2cef04e9276aed",
       user: "631eacb9e55920b1d55eb59d",
       title: title,
       description: description,
@@ -94,10 +94,26 @@ const NoteState = (props) => {
   };
 
   //delete a note
-  const deleteNote = (id) => {
+  const deleteNote = async(id) => {
+    //api call
+    const response = await fetch(`${host}/api/notes/deletenote/${id}`, {
+      method: "DELETE",
+
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token":
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMxZWFjYjllNTU5MjBiMWQ1NWViNTlkIn0sImlhdCI6MTY2Mjk1ODc1OX0.X3WzQQkBBxAsi6LhKJ2hREA_dBm_Bb8GyTbNLIieF0I",
+      }
+
+     
+    });
+    const json = response.json();
+    console.log(json);
+
+    //
     console.log("deleted");
     const newNotes = notes.filter((note) => {
-      return note._id != id;
+      return note._id !== id;
     });
     setNotes(newNotes);
   };
@@ -105,7 +121,7 @@ const NoteState = (props) => {
   //edit a note
   const editNote = async (id, title, description, tag) => {
     // api call
-    const response = await fetch(`${host}/api/notes/${id}`, {
+    const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
       method: "PUT",
 
       headers: {
@@ -116,17 +132,21 @@ const NoteState = (props) => {
 
       body: JSON.stringify({ title, description, tag }),
     });
-    const json = response.json();
-
+    const json =await  response.json();
+    
+let newNotes=JSON.parse(JSON.stringify(notes))
     //lodic to edit
-    for (let index = 0; index < notes.length; index++) {
-      const element = notes[index];
+    for (let index = 0; index < newNotes.length; index++) {
+      const element = newNotes[index];
       if (element._id === id) {
-        element.title = title;
-        element.description = description;
-        element.tag = tag;
+        newNotes[index].title = title;
+        newNotes[index].description = description;
+        newNotes[index].tag = tag;
+        break;
       }
+      
     }
+    setNotes(newNotes);
   };
 
   return (

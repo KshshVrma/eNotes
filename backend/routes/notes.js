@@ -102,14 +102,14 @@ catch (error) {
   //create a newNote object
   try {
     
-  
-  const newNote={};
-  if(title){
-    newNote.title=title};
-    if(description){
-      newNote.description=description};
-      if(tag){
-        newNote.tag=tag};
+  const {title,description,tag}=req.body;
+  // const newNote={};
+  // if(title){
+  //   newNote.title=title};
+  //   if(description){
+  //     newNote.description=description};
+  //     if(tag){
+  //       newNote.tag=tag};
   
         //find the note to be update and update it
   
