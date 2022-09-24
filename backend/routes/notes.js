@@ -58,6 +58,9 @@ router.put(
   async (req, res) => {
 const{title,description,tag}=req.body;
 //create a newNote object
+try {
+  
+
 const newNote={};
 if(title){
   newNote.title=title};
@@ -78,5 +81,55 @@ if(note.user.toString()!==req.user.id){
 }
 note=await Note.findByIdAndUpdate(req.params.id,{$set:newNote},{new:true})
 res.json({note});
+}
+catch (error) {
+  console.error(error.message);
+  res.status(500).send("some error occured");
+}
+
+
+
   })
+
+
+
+//route 4 delete a note useing  /deletenote/:id lognin required
+  router.delete(
+    '/deletenote/:id',
+    fetchuser,
+    async (req, res) => {
+ 
+  //create a newNote object
+  try {
+    
+  
+  const newNote={};
+  if(title){
+    newNote.title=title};
+    if(description){
+      newNote.description=description};
+      if(tag){
+        newNote.tag=tag};
+  
+        //find the note to be update and update it
+  
+  let note=await Note.findById(req.params.id);
+  if(!note){
+   return   res.status(404).send("Not Found")
+  }
+  // allow deletion only if user owns this note
+
+  if(note.user.toString()!==req.user.id){
+    return res.status(401).send("Not allowed");
+  }
+  note=await Note.findByIdAndDelete(req.params.id)
+  res.json({"success ":"note has been deleted",note:note});
+
+}
+catch (error) {
+  console.error(error.message);
+  res.status(500).send("some error occured");
+}
+
+    })
 module.exports = router;
