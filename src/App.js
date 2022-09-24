@@ -17,7 +17,7 @@ function App() {
           <Alert message="your task is deleted"></Alert>
           <div className="container">
             <Routes>
-              <Route path="/" element={"basic page"} />
+              <Route path="/" element={<Home />} />
               <Route path="/home" element={<Home />}/>
               <Route path="about/*" element={<About />} />
               <Route path="/login" element={<Login />} />

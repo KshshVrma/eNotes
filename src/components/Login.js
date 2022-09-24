@@ -1,9 +1,21 @@
 import React from 'react'
 import { useState } from 'react'
+import { Navigate,useNavigate } from "react-router-dom";
 
+// if (!authenticated) {
+//     return <Navigate replace to="/login" />;
+//   } else {
+//     return (
+//       <div>
+//         <p>Welcome to your Dashboard</p>
+//       </div>
+//     );
+//   }
 const Login = () => {
 const [credentials, setsetCredentials] = useState({email:"",password:""})
-
+// let history=unstable_HistoryRouter
+const navigate = useNavigate();
+//ye karo new react ki wajah se
     const handleSubmit= async (e)=>{
         e.preventDefault();
         
@@ -15,12 +27,26 @@ const [credentials, setsetCredentials] = useState({email:"",password:""})
          
             },
             body: JSON.stringify({email:credentials.email, password:credentials.password })
-        
-          
           });
           const json=await response.json()
           console.log(json);
-        
+          if(json.success){
+            //redirect
+            localStorage.setItem('token',json.authtoken);
+          
+                // return <Navigate replace to="/home" />;
+                navigate("/");
+            //   } else {
+            //     return (
+            //       <div>
+            //         <p>Welcome to your Dashboard</p>
+            //       </div>
+                // );
+              
+          }
+          else{
+            alert("Invalid credentials")
+          }
         }
         const onChange=(e)=>{
             setsetCredentials({...credentials,[e.target.name]:e.target.value})
