@@ -4,10 +4,11 @@ import eContext from '../context/notes/NoteContext';
 export default function AddNote() {
     const context = useContext(eContext);
     const{addNote}=context;
-    const [note, setNote] = useState({title :"",description:"",tag:"default"})
+    const [note, setNote] = useState({title :"",description:"",tag:""})
     const handleClick=(e)=>{
         e.preventDefault();
 addNote(note.title,note.description,note.tag);
+setNote({title :"",description:"",tag:""})
     }
 
 
@@ -20,20 +21,20 @@ setNote({...note,[e.target.name]:e.target.value})
     <h2>Add a Note</h2>
     <form>
   <div className="mb-3">
-    <label for="title" className="form-label">title</label>
-    <input type="text" className="form-control" id="title" name="title" aria-describedby="emailHelp" onChange={onChange}/>
+    <label for="title" className="form-label"><b>title</b> (min 3 characterr)</label>
+    <input type="text" className="form-control" id="title" name="title" aria-describedby="emailHelp" onChange={onChange}value={note.title}/>
 
   </div>
   <div className="mb-3">
-    <label for="description" className="form-label">Description</label>
-    <input type="text" className="form-control" id="description" name="description" onChange={onChange}/>
+    <label for="description" className="form-label"><b>Description</b>(min 3 character)</label>
+    <input type="text" className="form-control" id="description" name="description" onChange={onChange} value={note.description}/>
   </div>
   <div className="mb-3">
-    <label for="tag" className="form-label">Tag</label>
-    <input type="text" className="form-control" id="tag" name="tag" onChange={onChange}/>
+    <label for="tag" className="form-label"><b>Tag</b></label>
+    <input type="text" className="form-control" id="tag" name="tag" onChange={onChange}value={note.tag}/>
   </div>
 
-  <button type="submit" className="btn btn-primary" onClick={handleClick}>Add Note</button>
+  <button disabled={note.title.length<3||note.description.length<3}type="submit" className="btn btn-primary" onClick={handleClick}>Add Note</button>
 </form>
 
     </div></div>

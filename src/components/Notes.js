@@ -97,7 +97,7 @@ setNote({...note,[e.target.name]:e.target.value})
                     name="etitle"
                     aria-describedby="emailHelp"
                     value={note.etitle}
-                    onChange={onChange}
+                    onChange={onChange} 
                   />
                 </div>
                 <div className="mb-3">
@@ -123,7 +123,8 @@ setNote({...note,[e.target.name]:e.target.value})
                     id="etag"
                     name="etag"
                     value={note.etag}
-                    onChange={onChange}
+                    onChange={onChange} 
+
                   />
                 </div>
 
