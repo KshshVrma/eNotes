@@ -3,7 +3,7 @@ import { useContext } from "react";
 import Noteitem from "./Noteitem";
 import eContext from "../context/notes/NoteContext";
 import AddNote from "./AddNote";
-const Notes = () => {
+const Notes = (props) => {
   const context = useContext(eContext);
   const { notes, getNotes,editNote } = context;
   useEffect(() => {
@@ -24,6 +24,7 @@ const [note, setNote] = useState({ id:"",etitle :"",edescription:"",etag:""})
     ref.current.click();
 setNote({id:currentNote._id,etitle:currentNote.title,edescription:currentNote.description,etag:currentNote.tag})
 
+
   };
 
   const handleClick=(e)=>{
@@ -31,7 +32,7 @@ setNote({id:currentNote._id,etitle:currentNote.title,edescription:currentNote.de
 // addNote(note.title,note.description,note.tag);
 editNote(note.id,note.etitle,note.edescription,note.etag)
 refClose.current.click();
-
+props.showAlert("note updated","success")
 
 
 }
@@ -43,7 +44,7 @@ setNote({...note,[e.target.name]:e.target.value})
 }
   return (
     <>
-      <AddNote></AddNote>
+      <AddNote showAlert={props.showAlert}></AddNote>
 
       {/* <!-- Button trigger modal --> */}
       <button
@@ -160,7 +161,7 @@ setNote({...note,[e.target.name]:e.target.value})
           return (
             <Noteitem
               key={note._id}
-              updateNote={updateNote}
+              updateNote={updateNote} showAlert={props.showAlert}
               note={note}
             ></Noteitem>
           );

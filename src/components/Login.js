@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import { Navigate,useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 
 // if (!authenticated) {
 //     return <Navigate replace to="/login" />;
@@ -11,7 +11,7 @@ import { Navigate,useNavigate } from "react-router-dom";
 //       </div>
 //     );
 //   }
-const Login = () => {
+const Login = (props) => {
 const [credentials, setsetCredentials] = useState({email:"",password:""})
 // let history=unstable_HistoryRouter
 const navigate = useNavigate();
@@ -35,7 +35,9 @@ const navigate = useNavigate();
             localStorage.setItem('token',json.authtoken);
           
                 // return <Navigate replace to="/home" />;
+             
                 navigate("/");
+                props.showAlert("Log in success","success")
             //   } else {
             //     return (
             //       <div>
@@ -45,7 +47,7 @@ const navigate = useNavigate();
               
           }
           else{
-            alert("Invalid credentials")
+           props.showAlert("invalid credentials","danger")
           }
         }
         const onChange=(e)=>{
