@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/eNotes/static/css/main.2bbf956a.css",
+    "main.js": "/eNotes/static/js/main.f440a13a.js",
+    "static/js/787.5714e848.chunk.js": "/eNotes/static/js/787.5714e848.chunk.js",
+    "static/media/notes.jpeg": "/eNotes/static/media/notes.2952367c5db4c080375b.jpeg",
+    "index.html": "/eNotes/index.html",
+    "main.2bbf956a.css.map": "/eNotes/static/css/main.2bbf956a.css.map",
+    "main.f440a13a.js.map": "/eNotes/static/js/main.f440a13a.js.map",
+    "787.5714e848.chunk.js.map": "/eNotes/static/js/787.5714e848.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2bbf956a.css",
+    "static/js/main.f440a13a.js"
+  ]
+}
