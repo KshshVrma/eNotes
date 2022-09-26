@@ -24,7 +24,7 @@ const Signup = (props) => {
             localStorage.setItem('token',json.authtoken);
           
             // return <Navigate replace to="/home" />;
-            navigate("/");
+            navigate("/home");
             props.showAlert("success","success")
          }
         else{
@@ -40,7 +40,9 @@ const Signup = (props) => {
 
 
   return (
-    <div><form onSubmit={handleSubmit}>
+
+    <div>
+      <div className='mt-3'><h2>Signup to Continue</h2></div><form onSubmit={handleSubmit}>
          <div className="mb-3">
       <label htmlFor="name" className="form-label">Name</label>
       <input type="text" className="form-control" id="name"name="name" onChange={onChange}aria-describedby="emailHelp"/>

@@ -12,6 +12,7 @@ import {useNavigate } from "react-router-dom";
 //     );
 //   }
 const Login = (props) => {
+  
 const [credentials, setsetCredentials] = useState({email:"",password:""})
 // let history=unstable_HistoryRouter
 const navigate = useNavigate();
@@ -36,7 +37,7 @@ const navigate = useNavigate();
           
                 // return <Navigate replace to="/home" />;
              
-                navigate("/");
+                navigate("/home");
                 props.showAlert("Log in success","success")
             //   } else {
             //     return (
@@ -58,6 +59,7 @@ const navigate = useNavigate();
 
   return (
     <div>
+      <div className='mt-3'><h2>Login to Continue</h2></div>
 <form onSubmit={handleSubmit}>
   <div className="mb-3">
     <label htmlFor="email" className="form-label">Email address</label>
