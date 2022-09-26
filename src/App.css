@@ -7,7 +7,22 @@
   pointer-events: none;
 }
 
-
+.center{
+  text-align: center;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  width: 100%;
+}
+.article {
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: grid;
+  place-items: center;
+}
 
 .App-header {
   background-color: #282c34;
@@ -22,4 +37,12 @@
 
 i{
   cursor:pointer
+}
+.header {
+  font-size: 80px;
+  color: white;
+  text-align: center;
+}
+.alli{
+background-color: aquamarine;
 }

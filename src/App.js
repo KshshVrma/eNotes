@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NoteState from "./context/notes/NoteState";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
+import One from "./components/One"
 function App() {
   const [alert,setAlert]=useState(null);
   const showAlert = (message, type)=>{
@@ -21,14 +22,15 @@ function App() {
     }, 1500);
 }
   return (
-    <>
+    <div className="alli">
       <NoteState>
         <Router>
           <Navbar></Navbar>
           <Alert alert={alert}></Alert>
           <div className="container">
             <Routes>
-              <Route path="/" element={<Home showAlert={showAlert}/>} />
+              {/* <Route path="/" element={<Home showAlert={showAlert}/>} /> */}
+              <Route path="/" element={<One></One>} />
               <Route path="/home" element={<Home />}/>
               <Route path="about/*" element={<About />} />
               <Route path="/login" element={<Login showAlert={showAlert}/>} />
@@ -37,7 +39,7 @@ function App() {
           </div>
         </Router>
       </NoteState>
-    </>
+    </div>
   );
 }
 
